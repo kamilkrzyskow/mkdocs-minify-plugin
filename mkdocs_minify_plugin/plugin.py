@@ -147,6 +147,9 @@ class MinifyPlugin(BasePlugin):
             if self.config["cache_safe"]:
                 docs_file_path: str = f"{config['docs_dir']}/{file_path}".replace("\\", "/")
 
+                if not os.path.exists(docs_file_path):
+                    docs_file_path: str = f"overrides/{file_path}".replace("\\", "/")
+
                 with open(docs_file_path, encoding="utf8") as file:
                     file_data: str = file.read()
 
